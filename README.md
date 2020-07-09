@@ -1,6 +1,14 @@
 # enterprise-test-task
 Repository for my Jave EE based coding interview task.
 
+# Стек технологий
+
+- JDK 8
+- Ant, Maven
+- Glassfish 4.1.2
+- MySQL или PostgreSQL (второе предпочтительнее)
+- фронт-энд: jQuery, Bootstrap, Font Awesome
+
 # Задание
 
 Необходимо разработать приложение для Glassfish4, отвечающее указанным ниже требованиям.
