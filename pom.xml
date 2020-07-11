@@ -8,9 +8,7 @@
   <artifactId>enterprise-test-task</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>war</packaging>
-
-  <name>enterprise-test-task Maven Webapp</name>
-  <!-- FIXME change it to the project's website -->
+  <name>Enterprise Test Task</name>
   <url>https://github.com/TrueMerc/enterprise-test-task</url>
 
   <properties>
@@ -21,10 +19,21 @@
 
   <dependencies>
     <dependency>
+      <groupId>javax</groupId>
+      <artifactId>javaee-api</artifactId>
+      <version>8.0.1</version>
+    </dependency>
+    <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.11</version>
       <scope>test</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.flywaydb/flyway-core -->
+    <dependency>
+      <groupId>org.flywaydb</groupId>
+      <artifactId>flyway-core</artifactId>
+      <version>6.5.0</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/org.glassfish.maven.plugin/maven-glassfish-plugin -->
     <dependency>
@@ -32,11 +41,12 @@
       <artifactId>maven-glassfish-plugin</artifactId>
       <version>2.1</version>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/org.flywaydb/flyway-core -->
+    <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
     <dependency>
-      <groupId>org.flywaydb</groupId>
-      <artifactId>flyway-core</artifactId>
-      <version>6.5.0</version>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.12</version>
+      <scope>provided</scope>
     </dependency>
     <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
     <dependency>
