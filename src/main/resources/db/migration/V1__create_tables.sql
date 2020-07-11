@@ -5,6 +5,7 @@ CREATE TABLE employees
     second_name varchar(40) NOT NULL,
     first_name varchar(40) NOT NULL,
     patronymic varchar(40) NOT NULL,
+    work_hours_id bigint NOT NULL,
     age smallint NOT NULL
 );
 -- Таблица, содержащая административные округа.
@@ -28,20 +29,20 @@ CREATE TABLE administrative_divisions
     division_id bigint
  );
  -- Таблица, содержащая адреса
- DROR TABLE IF EXISTS addresses;
+ DROP TABLE IF EXISTS addresses;
  CREATE TABLE addresses
  (
     id bigserial PRIMARY KEY,
     name varchar(60) NOT NULL,
-    id district_id NOT NULL
+    district_id bigint NOT NULL
  );
  -- Таблица, содержащая возможные интервалы рабочего времени.
  DROP TABLE IF EXISTS work_hours;
  CREATE TABLE work_hours
  (
     id bigserial PRIMARY KEY,
-    begin time NOT NULL,
-    end time NOT NULL
+    start_time time NOT NULL,
+    end_time time NOT NULL
  );
  -- Таблица, устанавливающая соответствие между сотрудниками и адресами
  DROP TABLE IF EXISTS employees_addresses;
@@ -54,16 +55,6 @@ CREATE TABLE administrative_divisions
     FOREIGN KEY (address_id)
         REFERENCES  addresses (id)
  );
- -- Таблица, устанавливающая соответствие между сотрудниками и рабочими часами
- DROP TABLE IF EXISTS employees_work_hours;
- CREATE TABLE employees_work_hours(
-    employee_id bigint,
-    work_hours_id bigint,
-    PRIMARY KEY( employee_id, work_hours_id ),
-    FOREIGN KEY (employee_id)
-        REFERENCES employees (id),
-    FOREIGN KEY (work_hours_id)
-        REFERENCES  work_hours (id)
- );
+
 
 
