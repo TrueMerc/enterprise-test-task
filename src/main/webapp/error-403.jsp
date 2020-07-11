@@ -9,8 +9,15 @@
 <html>
 <head>
     <title>Forbidden</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="./resources/css/main.css">
 </head>
 <body>
-    <h1>Forbidden: 403</h1>
+    <header id="header"></header>
+    <div class="main_content">
+        <h1>Forbidden: 403</h1>
+    </div>
+    <footer id="footer"></footer>
+    <script src="./resources/js/header_footer.js"></script>
 </body>
 </html>
