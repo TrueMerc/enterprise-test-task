@@ -22,7 +22,7 @@ header {
     color: #f8f8f8;
     background-size: cover;
     background-repeat: no-repeat;
-    background-color: deepskyblue;
+    background-color: black;
     font-size: 1.5em;
     font-variant: small-caps;
     text-transform: lowercase;
@@ -66,10 +66,15 @@ header li a {
     padding-right: 15px;
 }
 
+header li a:visited {
+    color: dimgray;
+}
+
+
 footer {
     border-top: 1px solid #484343;
     color: #f8f8f8;
-    background-color: deepskyblue;
+    background-color: black;
     height: 5%;
     width: 100%;
     text-align: left;
