@@ -3,10 +3,7 @@ package ru.ryabtsev.enterprise.entity;
 import lombok.Data;
 import lombok.NonNull;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Provides 'Employee' entity implementation.
@@ -31,6 +28,14 @@ public class Employee extends AbstractEntity {
     @NonNull
     @Column(name = "age")
     Short age = 0;
+
+    @ManyToOne
+    @JoinColumn(name = "work_hours_id", nullable = false, updatable = false)
+    private WorkHours workHours;
+
+    @ManyToOne
+    @JoinColumn(name = "address_id", nullable = false, updatable = false)
+    private Address address;
 
     public Employee() {}
 

@@ -3,19 +3,13 @@ package ru.ryabtsev.enterprise.repository;
 import lombok.NonNull;
 import ru.ryabtsev.enterprise.entity.Employee;
 
-//import javax.ejb.Stateless;
 import javax.ejb.Stateless;
-import javax.faces.bean.ApplicationScoped;
-import javax.management.Query;
-import javax.persistence.TypedQuery;
 import java.util.Collection;
-import java.util.List;
 
 /**
  * Provides 'User' entities repository implementation.
  */
 @Stateless
-//@ApplicationScoped
 public class EmployeeRepositoryBean extends AbstractRepository implements EmployeeRepository {
     @Override
     public Employee create() {
@@ -25,10 +19,12 @@ public class EmployeeRepositoryBean extends AbstractRepository implements Employ
     }
 
     @Override
-    public @NonNull Collection<Employee> getAll() {
-        TypedQuery<Employee> query = entityManager.createQuery("SELECT e FROM Employee e", Employee.class);
-        List<Employee> result = query.getResultList();
-        return result;
+    @NonNull
+    public Collection<Employee> getAll() {
+//        TypedQuery<Employee> query = entityManager.createQuery("SELECT e FROM Employee e", Employee.class);
+//        List<Employee> result = query.getResultList();
+//        return result;
+        return entityManager.createQuery("SELECT e FROM Employee e", Employee.class).getResultList();
     }
 
     @Override
