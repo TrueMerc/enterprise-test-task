@@ -1,6 +1,6 @@
 function showResponse() {
     var xmlHttpRequest = new XMLHttpRequest();
-    xmlHttpRequest.open("GET", "./message", true);
+    xmlHttpRequest.open("GET", "./employeeList", true);
     xmlHttpRequest.responseType = 'text';
     xmlHttpRequest.send();
     xmlHttpRequest.onreadystatechange = function () {
