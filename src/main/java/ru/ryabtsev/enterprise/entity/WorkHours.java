@@ -21,4 +21,9 @@ public class WorkHours extends AbstractEntity {
     private LocalTime endTime;
 
     public WorkHours() {}
+
+    @Override
+    public String toString() {
+        return startTime + " - " + endTime;
+    }
 }

@@ -10,7 +10,6 @@ import javax.persistence.Converter;
  * Converter to persist LocalDate and LocalDateTime with
  * JPA 2.1 and Hibernate older than 5.0 version
  **/
-
 @Converter(autoApply = true)
 public class LocalTimeAttributeConverter implements AttributeConverter<LocalTime, Time>{
 

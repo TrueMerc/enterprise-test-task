@@ -53,4 +53,8 @@ public class Employee extends AbstractEntity {
     public Employee(@NonNull final String secondName, @NonNull final String firstName, @NonNull final Short age) {
         this(secondName, firstName, "", age);
     }
+
+    public String getFullName() {
+        return secondName + ' ' + firstName + ' ' + patronymic;
+    }
 }

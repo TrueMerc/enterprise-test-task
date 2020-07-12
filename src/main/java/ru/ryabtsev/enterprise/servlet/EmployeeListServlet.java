@@ -1,5 +1,8 @@
 package ru.ryabtsev.enterprise.servlet;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import ru.ryabtsev.enterprise.entity.Address;
 import ru.ryabtsev.enterprise.entity.Employee;
 import ru.ryabtsev.enterprise.repository.EmployeeRepository;
 
@@ -30,13 +33,23 @@ public class EmployeeListServlet extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        resp.setContentType("text/html;charset=UTF-8");
-        Collection<Employee> employees = employeeRepository.getAll();
-        if(employees.isEmpty()) {
-            resp.getWriter().write("No data to show");
+        final Collection<Employee> employees = employeeRepository.getAll();
+        final JSONArray jsonArray = new JSONArray();
+
+        for(Employee employee: employees) {
+            final JSONObject jsonObject = new JSONObject();
+            jsonObject.put("id", employee.getId());
+            jsonObject.put("name", employee.getFullName());
+            final Address address = employee.getAddress();
+            jsonObject.put("address", address.getName());
+            jsonObject.put("district", address.getDistrict().getName());
+            jsonObject.put("administrative_division", address.getDistrict().getAdministrativeDivision().getName());
+            jsonObject.put("work_hours", employee.getWorkHours());
+            jsonObject.put("age", employee.getAge());
+            jsonArray.put(jsonObject);
         }
-        else {
-            resp.getWriter().write( employees.size() + " employee entries found.");
-        }
+
+        resp.setContentType("application/json;charset=UTF-8");
+        resp.getWriter().write(jsonArray.toString());
     }
 }
