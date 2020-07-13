@@ -92,3 +92,78 @@ function getParameterByName(name, url) {
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
+
+function sortTable(columnId, isReference) {
+    var table, rows, switching, i, x, y, shouldSwitch;
+    table = document.getElementById("employees_table");
+    switching = true;
+    /* Make a loop that will continue until
+    no switching has been done: */
+    while (switching) {
+        // Start by saying: no switching is done:
+        switching = false;
+        rows = table.rows;
+        /* Loop through all table rows (except the
+        first, which contains table headers): */
+        for (i = 1; i < (rows.length - 1); i++) {
+            // Start by saying there should be no switching:
+            shouldSwitch = false;
+            /* Get the two elements you want to compare,
+            one from current row and one from the next: */
+            if(isReference) {
+                x = rows[i].getElementsByTagName("TD")[columnId].getElementsByTagName("A")[0];
+                y = rows[i + 1].getElementsByTagName("TD")[columnId].getElementsByTagName("A")[0];
+            }
+            else {
+                x = rows[i].getElementsByTagName("TD")[columnId];
+                y = rows[i + 1].getElementsByTagName("TD")[columnId];
+            }
+            // Check if the two rows should switch place:
+            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                // If so, mark as a switch and break the loop:
+                shouldSwitch = true;
+                break;
+            }
+        }
+        if (shouldSwitch) {
+            /* If a switch has been marked, make the switch
+            and mark that a switch has been done: */
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+        }
+    }
+}
+
+// $('#name_header, #age_header, #district_header, #administrative_unit_header')
+//     .wrapInner('<span title="Sort this column"/>')
+//     .each(function(){
+//
+//         let table = document.getElementById("employees_table");
+//         let th = $(this),
+//             thIndex = th.index(),
+//             inverse = false;
+//
+//         th.click(function(){
+//
+//             $(table).find('td').filter(function(){
+//
+//                 return $(this).index() === thIndex;
+//
+//             }).sortElements(function(a, b){
+//
+//                 return $.text([a]) > $.text([b]) ?
+//                     inverse ? -1 : 1
+//                     : inverse ? 1 : -1;
+//
+//             }, function(){
+//
+//                 // parentNode is the element we want to move
+//                 return this.parentNode;
+//
+//             });
+//
+//             inverse = !inverse;
+//
+//         });
+//
+//     });

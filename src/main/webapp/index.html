@@ -12,12 +12,12 @@
     <div class="main_content">
         <table id="employees_table" class="table">
             <tr>
-                <th>Full Name</th>
-                <th>Age</th>
+                <th id = "name_header" onclick="sortTable(0, true)">Full Name</th>
+                <th id = "age_header" onclick="sortTable(1, false)">Age</th>
                 <th>Work Hours</th>
                 <th>Address</th>
-                <th>District</th>
-                <th>Administrative Unit</th>
+                <th id = "district_header" onclick="sortTable(4, false)">District</th>
+                <th id = "administrative_unit_header" onclick="sortTable(5, false)">Administrative Unit</th>
             </tr>
         </table>
     </div>
