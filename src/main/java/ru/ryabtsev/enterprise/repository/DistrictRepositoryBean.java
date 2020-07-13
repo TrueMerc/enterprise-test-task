@@ -26,6 +26,13 @@ public class DistrictRepositoryBean extends AbstractRepository implements Distri
     }
 
     @Override
+    public District get(String name) {
+        return entityManager.createQuery("SELECT d FROM District d WHERE d.name LIKE :name", District.class)
+                .setParameter("name", name)
+                .getSingleResult();
+    }
+
+    @Override
     public void merge(District item) {
         entityManager.merge(item);
     }

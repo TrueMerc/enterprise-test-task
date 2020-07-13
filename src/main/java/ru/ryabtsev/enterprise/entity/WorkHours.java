@@ -3,10 +3,10 @@ package ru.ryabtsev.enterprise.entity;
 import lombok.Data;
 import lombok.NonNull;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -19,6 +19,9 @@ public class WorkHours extends AbstractEntity {
     @NonNull
     @Column(name = "end_time")
     private LocalTime endTime;
+
+    @OneToMany(cascade = CascadeType.PERSIST)
+    private List<Employee> employees = new ArrayList<>();
 
     public WorkHours() {}
 

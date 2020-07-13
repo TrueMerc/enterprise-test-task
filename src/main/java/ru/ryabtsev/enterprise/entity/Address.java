@@ -3,10 +3,9 @@ package ru.ryabtsev.enterprise.entity;
 import lombok.Data;
 import lombok.NonNull;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -18,6 +17,9 @@ public class Address extends AbstractEntity {
 
     @ManyToOne
     private District district;
+
+    @OneToMany
+    private List<Employee> employees = new ArrayList<>();
 
     public Address() {}
 }

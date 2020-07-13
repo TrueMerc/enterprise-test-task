@@ -1,14 +1,3 @@
-DROP TABLE IF EXISTS employees;
-CREATE TABLE employees
-(
-    id bigserial PRIMARY KEY,
-    second_name varchar(40) NOT NULL,
-    first_name varchar(40) NOT NULL,
-    patronymic varchar(40) NOT NULL,
-    work_hours_id bigint NOT NULL,
-    address_id bigint NOT NULL,
-    age smallint NOT NULL
-);
 -- Таблица, содержащая административные округа.
 DROP TABLE IF EXISTS administrative_divisions;
 CREATE TABLE administrative_divisions
@@ -27,7 +16,9 @@ CREATE TABLE districts
 (
     id bigserial PRIMARY KEY,
     name varchar(50) NOT NULL,
-    division_id bigint
+    division_id bigint,
+    FOREIGN KEY(division_id)
+        REFERENCES administrative_divisions(id)
 );
 -- Таблица, содержащая адреса
 DROP TABLE IF EXISTS addresses;
@@ -35,7 +26,9 @@ CREATE TABLE addresses
 (
     id bigserial PRIMARY KEY,
     name varchar(60) NOT NULL,
-    district_id bigint NOT NULL
+    district_id bigint NOT NULL,
+    FOREIGN KEY(district_id)
+        REFERENCES districts(id)
 );
 -- Таблица, содержащая возможные интервалы рабочего времени.
 DROP TABLE IF EXISTS work_hours;
@@ -45,17 +38,23 @@ CREATE TABLE work_hours
     start_time time NOT NULL,
     end_time time NOT NULL
 );
- -- Таблица, устанавливающая соответствие между сотрудниками и адресами
---  DROP TABLE IF EXISTS employees_addresses;
---  CREATE TABLE employees_addresses(
---     employee_id bigint,
---     address_id bigint,
---     PRIMARY KEY( employee_id, address_id ),
---     FOREIGN KEY (employee_id)
---         REFERENCES employees (id),
---     FOREIGN KEY (address_id)
---         REFERENCES  addresses (id)
---  );
+-- Таблица, содержащая сотрудников
+DROP TABLE IF EXISTS employees;
+CREATE TABLE employees
+(
+    id bigserial PRIMARY KEY,
+    second_name varchar(40) NOT NULL,
+    first_name varchar(40) NOT NULL,
+    patronymic varchar(40) NOT NULL,
+    work_hours_id bigint NOT NULL,
+    address_id bigint NOT NULL,
+    age smallint NOT NULL,
+    FOREIGN KEY(address_id)
+        REFERENCES addresses(id),
+    FOREIGN KEY(work_hours_id)
+        REFERENCES work_hours(id)
+);
+
 
 
 

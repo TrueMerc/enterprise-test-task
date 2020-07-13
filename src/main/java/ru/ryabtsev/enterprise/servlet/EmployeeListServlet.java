@@ -42,7 +42,7 @@ public class EmployeeListServlet extends HttpServlet {
             final Address address = employee.getAddress();
             jsonObject.put("address", address.getName());
             jsonObject.put("district", address.getDistrict().getName());
-            jsonObject.put("administrative_division", address.getDistrict().getAdministrativeDivision().getName());
+            jsonObject.put("administrative_division", address.getDistrict().getAdministrativeUnit().getName());
             jsonObject.put("work_hours", employee.getWorkHours());
             jsonObject.put("age", employee.getAge());
             jsonArray.put(jsonObject);

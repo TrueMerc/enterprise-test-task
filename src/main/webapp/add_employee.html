@@ -1,0 +1,36 @@
+<html>
+<head>
+    <title>Not Found</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="./resources/css/main.css">
+</head>
+<body onload="fillPageElements()">
+    <header id="header"></header>
+    <div class="main_content">
+        <h2>New employee</h2>
+        <div class = "input-group mb-3">
+             <form id="add_employee" onsubmit="checkNewEmployee();return false" method="GET" action="./addEmployee">
+                <label for="second_name_input">Second name</label>
+                <input type="text" id="second_name_input" name="second_name"><br>
+                <label for="first_name_input">First name</label>
+                <input type="text" id="first_name_input" name="first_name"><br>
+                <label for="patronymic_input">Patronymic</label>
+                <input type="text" id="patronymic_input" name="patronymic"><br>
+                <label for="age_input">Age</label>
+                <input type="text" id="age_input" name="age"><br>
+                <label for="address_input">Address</label>
+                <input type="text" id="address_input" name="address"><br>
+                <select id="district_select" name="district"></select><br>
+                <select id="administrative_unit_select" name="ad_unit"></select>
+                <p></p>
+                <button type="submit" class="btn btn-primary">OK</button>
+            </form>
+        </div>
+    </div>
+    <footer id="footer"></footer>
+    <script src="./resources/js/header_footer.js"></script>
+    <script src="./resources/js/new_employee.js"></script>
+</body>
+</html>
