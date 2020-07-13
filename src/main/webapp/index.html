@@ -12,12 +12,19 @@
     <div class="main_content">
         <table id="employees_table" class="table">
             <tr>
-                <th id = "name_header" onclick="sortTable(0, true)">Full Name</th>
-                <th id = "age_header" onclick="sortTable(1, false)">Age</th>
+                <th id = "name_header" onclick="sortTable(0, true)">
+                    <span title="Sort this column">Full Name</span>
+                </th>
+                <th id = "age_header" onclick="sortTable(1, false)">
+                    <span title="Sort this column">Age</span></th>
                 <th>Work Hours</th>
                 <th>Address</th>
-                <th id = "district_header" onclick="sortTable(4, false)">District</th>
-                <th id = "administrative_unit_header" onclick="sortTable(5, false)">Administrative Unit</th>
+                <th id = "district_header" onclick="sortTable(4, false)">
+                    <span title="Sort this column">District</span>
+                </th>
+                <th id = "administrative_unit_header" onclick="sortTable(5, false)">
+                    <span title="Sort this column">Administrative Unit</span>
+                </th>
             </tr>
         </table>
     </div>
