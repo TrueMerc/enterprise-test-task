@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Collection;
 
-
 @WebServlet(urlPatterns = {"/employeeList"})
 public class EmployeeListServlet extends HttpServlet {
 
