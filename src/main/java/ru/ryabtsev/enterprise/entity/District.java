@@ -16,7 +16,7 @@ public class District extends AbstractEntity {
 
     @ManyToOne
     @JoinColumn(name = "division_id", nullable = false, updatable = false)
-    AdministrativeDivision administrativeDivision;
+    AdministrativeUnit administrativeDivision;
 
     public District() {}
 }

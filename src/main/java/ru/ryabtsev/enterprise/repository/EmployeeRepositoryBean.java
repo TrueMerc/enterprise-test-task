@@ -21,9 +21,6 @@ public class EmployeeRepositoryBean extends AbstractRepository implements Employ
     @Override
     @NonNull
     public Collection<Employee> getAll() {
-//        TypedQuery<Employee> query = entityManager.createQuery("SELECT e FROM Employee e", Employee.class);
-//        List<Employee> result = query.getResultList();
-//        return result;
         return entityManager.createQuery("SELECT e FROM Employee e", Employee.class).getResultList();
     }
 
@@ -43,7 +40,10 @@ public class EmployeeRepositoryBean extends AbstractRepository implements Employ
     }
 
     @Override
-    public void remove(String productId) {
-
+    public void remove(Long id) {
+        final Employee product = this.get(id);
+        if( product != null) {
+            super.doRemove(product);
+        }
     }
 }

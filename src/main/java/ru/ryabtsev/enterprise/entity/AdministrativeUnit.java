@@ -10,11 +10,11 @@ import javax.persistence.Table;
 @Data
 @Entity
 @Table(name = "enterprise_test.administrative_divisions")
-public class AdministrativeDivision extends AbstractEntity {
+public class AdministrativeUnit extends AbstractEntity {
 
     @NonNull
     @Column(name = "name")
     private String name;
 
-    public AdministrativeDivision() {}
+    public AdministrativeUnit() {}
 }

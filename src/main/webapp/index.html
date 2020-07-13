@@ -7,7 +7,7 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="./resources/css/main.css">
 </head>
-<body id="main_page" onload="showEmployeeList()">
+<body id="main_page" onpageshow="fillPageElements()">
     <header id="header"></header>
     <div class="main_content">
         <table id="employees_table" class="table">
@@ -27,6 +27,12 @@
                 </th>
             </tr>
         </table>
+        <br/>
+        <form id="filters" action="#" onsubmit="filterTable();return false">
+            <select id="district_filter"></select>
+            <select id="administrative_unit_filter"></select>
+            <input type="submit">
+        </form>
     </div>
     <footer id="footer"></footer>
     <script src="./resources/js/header_footer.js"></script>

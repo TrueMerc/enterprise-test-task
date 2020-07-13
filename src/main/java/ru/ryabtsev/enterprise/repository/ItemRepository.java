@@ -42,7 +42,7 @@ public interface ItemRepository<ItemType, IdentifierType> {
 
     /**
      * Removes item with given id from repository.
-     * @param productId product id.
+     * @param id item identifier.
      */
-    void remove(String productId);
+    void remove(IdentifierType id);
 }

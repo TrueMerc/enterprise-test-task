@@ -1,3 +1,9 @@
+function fillPageElements() {
+    showEmployeeList();
+    fillSelect("district_filter", "./districtList");
+    fillSelect("administrative_unit_filter", "./administrativeUnitList");
+}
+
 function showEmployeeList() {
     var xmlHttpRequest = new XMLHttpRequest();
     xmlHttpRequest.open("GET", "./employeeList", true);
@@ -134,36 +140,62 @@ function sortTable(columnId, isReference) {
     }
 }
 
-// $('#name_header, #age_header, #district_header, #administrative_unit_header')
-//     .wrapInner('<span title="Sort this column"/>')
-//     .each(function(){
-//
-//         let table = document.getElementById("employees_table");
-//         let th = $(this),
-//             thIndex = th.index(),
-//             inverse = false;
-//
-//         th.click(function(){
-//
-//             $(table).find('td').filter(function(){
-//
-//                 return $(this).index() === thIndex;
-//
-//             }).sortElements(function(a, b){
-//
-//                 return $.text([a]) > $.text([b]) ?
-//                     inverse ? -1 : 1
-//                     : inverse ? 1 : -1;
-//
-//             }, function(){
-//
-//                 // parentNode is the element we want to move
-//                 return this.parentNode;
-//
-//             });
-//
-//             inverse = !inverse;
-//
-//         });
-//
-//     });
+function  fillSelect(name, url) {
+    let select = document.getElementById(name);
+    let unknown = document.createElement("option");
+    unknown.value = 0;
+    unknown.innerHTML = "Unknown";
+    select.appendChild(unknown);
+
+    let xmlHttpRequest = new XMLHttpRequest();
+    xmlHttpRequest.responseType = 'json';
+    xmlHttpRequest.open('GET', url);
+    xmlHttpRequest.send();
+
+    xmlHttpRequest.onreadystatechange = function () {
+        if(this.readyState == 4 && this.status == 200) {
+            // document.getElementById("server_response_text").innerHTML = this.responseText;
+            let array = xmlHttpRequest.response;
+            for(let i = 0; i < array.length; ++i) {
+                let option = document.createElement("option");
+                option.value = i + 1;
+                option.innerHTML = array[i].name;
+                select.appendChild(option);
+            }
+        };
+    }
+}
+
+function filterTable() {
+
+    let table = document.getElementById("employees_table");
+    let districtSelect = document.getElementById("district_filter");
+    let unitSelect = document.getElementById("administrative_unit_filter");
+
+    let districtFilter = districtSelect.options[districtSelect.selectedIndex].text.toUpperCase();
+    let unitFilter = unitSelect.options[unitSelect.selectedIndex].text.toUpperCase();
+
+    let filters = [ districtFilter, unitFilter ];
+
+    let tr = table.getElementsByTagName("tr");
+
+    // Loop through all table rows, and hide those who don't match the search query
+    for (let i = 1; i < tr.length; i++) {
+        let showRow = true;
+        for( let j = 4; j < 6; ++j) {
+            let td = tr[i].getElementsByTagName("td")[j];
+            if (td) {
+                let txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filters[j - 4]) <= -1 && filters[j - 4] != "Unknown".toUpperCase()) {
+                    showRow = false
+                }
+            }
+        }
+        if(showRow) {
+            tr[i].style.display = "";
+        }
+        else {
+            tr[i].style.display = "none";
+        }
+    }
+}
